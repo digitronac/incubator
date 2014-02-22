@@ -153,20 +153,18 @@ class Memcache extends Phalcon\Session\Adapter implements Phalcon\Session\Adapte
     }
 
     /**
-     * Destroys session.
+     * {@inheritdoc}
      *
-     * @param string $session_id optional, session id
-     *
+     * @param  string  $sessionId
      * @return boolean
      */
     public function destroy($session_id = null)
     {
-        if (!$session_id) {
-            $session_id = $this->getSessionId($this->getId());
-        } else {
-            $session_id = $this->getSessionId($session_id);
+        if (is_null($session_id)) {
+            $session_id = $this->getId();
         }
-        return $this->getMemcacheInstance()->delete($session_id);
+        
+        return $this->getMemcacheInstance()->delete($this->getSessionId($session_id));
     }
 
     /**
@@ -211,19 +209,6 @@ class Memcache extends Phalcon\Session\Adapter implements Phalcon\Session\Adapte
         }
 
         return $this->memcacheInstance;
-    }
-
-    /**
-     * Sets memcache instance.
-     *
-     * @param Phalcon\Cache\Backend\Memcache $memcacheInstance memcache instance
-     *
-     * @return $this provides fluent interface
-     */
-    public function setMemcacheInstance(\Phalcon\Cache\Backend\Memcache $memcacheInstance)
-    {
-        $this->memcacheInstance = $memcacheInstance;
-        return $this;
     }
 
     /**
