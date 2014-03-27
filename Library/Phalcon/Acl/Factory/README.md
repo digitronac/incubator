@@ -2,7 +2,7 @@
 Phalcon\Acl\Factory
 ===================
 
-[Phalcon\Acl\Factory\Memory](https://github.com/digitronac/incubator/blob/feature/acl-memory-adapter-factory/Library/Phalcon/Acl/Factory/Memory.php)
+Phalcon\Acl\Factory\Memory
 __________________________
 This factory is intended to be used to ease setup of \Phalcon\Acl\Adapter\Memory
 in case \Phalcon\Config or one of its adapters is used for configuration.
