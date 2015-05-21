@@ -76,9 +76,6 @@ class Memory
         // resources
         foreach ($this->config->resource as $name => $resource) {
             $actions = (array) $resource->get('actions');
-            if (!$actions) {
-                $actions = null;
-            }
             $this->acl->addResource(
                 $this->makeResource($name, $resource->description),
                 $actions
@@ -129,11 +126,6 @@ class Memory
 
             foreach ($rules as $controller => $actionRules) {
                 $actions = (array) $actionRules->get('actions');
-                if (!$actions) {
-                    throw new \Phalcon\Acl\Exception(
-                        'Key "actions" must exist and must be traversable.'
-                    );
-                }
                 if (!in_array($method, array('allow', 'deny'))) {
                     throw new \Phalcon\Acl\Exception(sprintf(
                         'Wrong access method given. Expected "allow" or "deny" but "%s" was set.',
